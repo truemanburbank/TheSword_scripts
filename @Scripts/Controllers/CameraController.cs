@@ -20,8 +20,8 @@ public class CameraController : MonoBehaviour
     public float _scaleMultiplier;
     float _scrollSpeed = 10f;
 
-    static Vector3 _minBounds;
-    static Vector3 _maxBounds;
+    public static Vector3 _minBounds;
+    public static Vector3 _maxBounds;
 
     CinemachineVirtualCamera _vCam;
 
@@ -80,6 +80,9 @@ public class CameraController : MonoBehaviour
 
     void CameraUpdate()
     {
+        if (Managers.Game.OnMeetKingSlime)
+            return;
+
         Vector3 pos = Managers.Game.Player.transform.position;
 
         SetCameraExtent();

@@ -57,7 +57,6 @@ public class UI_TutorialScene : UI_Scene
         BindImage(typeof(Images));
         #endregion
 
-        Managers.Game.CurPlayerData.CurStageid = 0;
         Managers.Game.InstantiateMap(Managers.Game.CurPlayerData.CurStageid);
         Managers.Game.CurPlayerData.MoveSpeed = 1f;
 
@@ -121,6 +120,22 @@ public class UI_TutorialScene : UI_Scene
 
             Debug.Log($"Managers.Game.CurPlayerData.MoveSpeed : {Managers.Game.CurPlayerData.MoveSpeed}");
         }
+
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            GameObject monsters = GameObject.Find("Monsters");
+            if (monsters != null ) monsters.gameObject.SetActive(false);
+            GameObject pillars = GameObject.Find("Pillars");
+            if (pillars != null) pillars.gameObject.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+            Managers.Game.OnMeetKingSlime = true;
+
+            Camera.main.GetComponentInChildren<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset =
+                Vector3.Lerp(Camera.main.GetComponentInChildren<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset, new Vector3(0f, 20f, -5f), 2f);
+        }
+        
         #endregion
     }
 
